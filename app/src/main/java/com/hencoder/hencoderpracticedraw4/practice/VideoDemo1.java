@@ -11,7 +11,6 @@ import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 
 import com.hencoder.hencoderpracticedraw4.R;
 
@@ -38,7 +37,7 @@ public class VideoDemo1 extends View {
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maps);
 
         animator.setDuration(2500);
-        animator.setInterpolator(new LinearInterpolator());
+        //animator.setInterpolator(new LinearInterpolator());
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setRepeatMode(ValueAnimator.REVERSE);
     }

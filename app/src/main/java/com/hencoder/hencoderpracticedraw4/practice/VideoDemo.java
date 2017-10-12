@@ -11,7 +11,6 @@ import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
 
 import com.hencoder.hencoderpracticedraw4.R;
 
@@ -19,9 +18,9 @@ public class VideoDemo extends View {
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     Bitmap bitmap;
     Camera camera = new Camera();
-    float rotationY;
+    int degree;
 
-    ObjectAnimator animator = ObjectAnimator.ofFloat(this, "rotationY", 0, -180);
+    ObjectAnimator animator = ObjectAnimator.ofInt(this, "degree", 0,-180);
 
 
     public VideoDemo(Context context) {
@@ -40,7 +39,6 @@ public class VideoDemo extends View {
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.maps);
 
         animator.setDuration(2000);
-        animator.setInterpolator(new LinearInterpolator());
         animator.setRepeatCount(ValueAnimator.INFINITE);
         animator.setRepeatMode(ValueAnimator.REVERSE);
     }
@@ -57,9 +55,8 @@ public class VideoDemo extends View {
         animator.end();
     }
 
-    @Override
-    public void setRotationY(float rotationY) {
-        this.rotationY = rotationY;
+    public void setDegree(int degree) {
+        this.degree = degree;
         invalidate();
     }
 
@@ -80,13 +77,13 @@ public class VideoDemo extends View {
         canvas.restore();
 
         canvas.save();
-        if (rotationY > -90) {
+        if (degree > -90) {
             canvas.clipRect(x + bitmapWidth / 2, 0, getWidth(), getHeight());
         } else {
             canvas.clipRect(x, 0, x + bitmapWidth / 2, getHeight());
         }
         camera.save();
-        camera.rotateY(rotationY);
+        camera.rotateY(degree);
         canvas.translate(centerX, centerY);
         camera.applyToCanvas(canvas);
         canvas.translate(-centerX, -centerY);
