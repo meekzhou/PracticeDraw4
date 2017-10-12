@@ -74,21 +74,16 @@ public class VideoDemo extends View {
         int x = centerX - bitmapWidth / 2;
         int y = centerY - bitmapHeight / 2;
 
-        //原点
-        int left = (getWidth() - bitmap.getWidth()) / 2;
-        int top = (getHeight() - bitmap.getHeight()) / 2;
-
-
         canvas.save();
-        canvas.clipRect(left, 0, left + bitmapWidth / 2, getHeight());
+        canvas.clipRect(x, 0, x + bitmapWidth / 2, getHeight());
         canvas.drawBitmap(bitmap, x, y, paint);
         canvas.restore();
 
         canvas.save();
         if (rotationY > -90) {
-            canvas.clipRect(left + bitmapWidth / 2, 0, getWidth(), getHeight());
+            canvas.clipRect(x + bitmapWidth / 2, 0, getWidth(), getHeight());
         } else {
-            canvas.clipRect(left, 0, left + bitmapWidth / 2, getHeight());
+            canvas.clipRect(x, 0, x + bitmapWidth / 2, getHeight());
         }
         camera.save();
         camera.rotateY(rotationY);
